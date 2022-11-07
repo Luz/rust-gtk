@@ -2,9 +2,10 @@ use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button, Orientation};
 use gtk4 as gtk;
 
+const NAME: &str = env!("CARGO_PKG_NAME");
+
 fn main() {
-    let name = env!("CARGO_PKG_NAME");
-    let app = Application::builder().application_id(name).build();
+    let app = Application::builder().application_id(NAME).build();
     app.connect_activate(build_ui);
     app.run();
 }
@@ -28,12 +29,11 @@ fn build_ui(app: &Application) {
     frame.append(&button1);
     frame.append(&button2);
 
-    let name = env!("CARGO_PKG_NAME");
     let win = ApplicationWindow::builder()
         .application(app)
         .default_width(300)
         .default_height(300)
-        .title(name)
+        .title(NAME)
         .child(&frame)
         .build();
 
