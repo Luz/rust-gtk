@@ -5,7 +5,9 @@ use gtk4 as gtk;
 const NAME: &str = env!("CARGO_PKG_NAME");
 
 fn main() {
-    let app = Application::builder().application_id(NAME).build();
+    // Gtk needs two things separated by a dot:
+    let gtk_app_name: String = format!("linux.{}", NAME);
+    let app = Application::builder().application_id(&gtk_app_name).build();
     app.connect_activate(build_ui);
     app.run();
 }
